@@ -25,7 +25,7 @@
 # delete this exception statement from all source files in the program,
 # then also delete it in the license file.
 
-from flask import Flask, redirect, make_response, Response, render_template, request, send_from_directory
+from flask import Flask, redirect, make_response, Response, render_template, request, send_from_directory, jsonify
 from twisted.web import http
 import webbrowser
 import json
@@ -53,6 +53,8 @@ import string
 import pylab as plt
 import re
 from urllib import urlopen
+from flask_swagger import swagger
+from flasgger.utils import swag_from
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../modules')))
 from advancedstatistics import loadpanel, statistics2table, handle2statistics, data2statistics, read_measure, statistics_tojson, advpanel2dict
 from search import dataset_search, getindicators, dataverse_search, loadjson
@@ -71,7 +73,8 @@ from datasets import *
 from datacompiler import dataframe_compiler
 from data2excel import panel2excel
 from cliocore.configutils import Configuration, Utils, DataFilter
-from cliocore.datasets import Dataset
+from cliocore.datasetmanager import Dataset
+from cliocore.geocoder import Geocoder
 
 # Function to create json from dict 
 def json_generator(c, jsondataname, data):
@@ -406,6 +409,14 @@ app = Flask(__name__)
 def test():
     description = 'nlgis2 API Service v.0.1<br>/api/maps (map polygons)<br>/api/data (data services)<br>'
     return description
+
+@app.route("/spec")
+@swag_from('swagger/swagger.yaml')
+def spec():
+    swag = swagger(app)
+    swag['info']['version'] = "1.0"
+    swag['info']['title'] = "My API"
+    return jsonify(swagger(app))
 
 @app.route('/demo')
 def demo():
@@ -876,10 +887,15 @@ def geofilter():
     ctrfilter = []
     settings = Configuration()
     clioinfra = Dataset()
+    geocoder = Geocoder()
     clioindex = clioinfra.clioindex()
     columns = ['1', 'Webmapper code', 'Webmapper numeric code', 'ccode', 'country name', 'start year', 'end year']
     (classification, geodataset, title, units) = content2dataframe(settings.config, settings.config['geocoderhandle'])
     settings = DataFilter(request.args)
+    (geo, g1, g2) = geocoder.buildgeocoder(settings)
+    if settings.classification() == 'modern':
+	geodataset = geocoder.modernboundaries()
+
     if settings.selected():
         pids = clioinfra.findhandles(settings.selected())
 	datasets = clioinfra.retrievedatasets(pids)
@@ -913,7 +929,7 @@ def geofilter():
 	if ctrfilter:
 	    geodataset = geodataset.ix[ctrfilter]
 
-    (geocoder, geolist, oecd) = buildgeocoder(geodataset, settings.config, settings.countryfilter())
+    (geocoder, geolist, oecd) = geocoder.buildgeocoder(settings)
     data = json.dumps(geocoder, encoding="utf-8", sort_keys=True, indent=4)
     return Response(data,  mimetype='application/json')
 

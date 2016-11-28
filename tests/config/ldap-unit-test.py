@@ -31,6 +31,7 @@ from __future__ import absolute_import
 import os
 import sys
 import unittest
+import json
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname("__file__"), '../../')))
 from cliocore.configutils import Configuration, OpenLDAP, Utils
 
@@ -45,8 +46,9 @@ class URITestClass(ConfigTestClass):
     def test_ldap(self):
 	self.clioinfra = Configuration()
 	self.openldap = OpenLDAP()
-	thisuser = self.openldap.searchuser("testusername")
-	thisuser = self.openldap.authentificate("testusername", "passwd")
+	#thisuser = self.openldap.searchuser("bas.van.leeuwen")
+	thisuser = self.openldap.authentificate("vty", "103Monday")
+	#thisuser = self.openldap.authentificate("testuser", "t3stuser")
 	print thisuser
 
 if __name__ == '__main__':

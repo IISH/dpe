@@ -1,0 +1,6 @@
+<config>
+        <geoservice>//data.socialhistory.org/services/geo/fetch?format=topojson&amp;year=</geoservice>
+        <datahost>//data.socialhistory.org</datahost>
+        <mapyear>2010</mapyear>
+        <sandbox>//clearance.sandbox.socialhistoryservices.org/api/maps?world=on&amp;year=</sandbox>
+</config>

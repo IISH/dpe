@@ -1,0 +1,92 @@
+	ID	Name	parent ID	parent name
+0	10	Biological Standards of Living		
+1	11	Demography		
+2	12	Finance		
+3	13	Gender Equality		
+4	14	Agriculture		
+5	15	Human Capital		
+6	16	Institutions		
+7	17	Labour Relations		
+8	18	National Accounts		
+9	19	Prices and Wages		
+10	20	Environment		
+11	21	Production		
+12	10001	Height	10.0	Biological Standards of Living
+13	10002	Height Gini	10.0	Biological Standards of Living
+14	11001	GDP per Capita	11.0	Demography
+15	11002	Infant Mortality	11.0	Demography
+16	11003	Life Expectancy at Birth (Total)	11.0	Demography
+17	11004	Male life Expectancy at Birth	11.0	Demography
+18	11005	Total Population	11.0	Demography
+19	11006	Total Urban Population	11.0	Demography
+20	11007	Urbanization Ratio	11.0	Demography
+21	12001	Exchange Rates to UK Pound	12.0	Finance
+22	12002	Exchange Rates to US Dollar	12.0	Finance
+23	12003	Gold Standard	12.0	Finance
+24	12004	Long-Term Government Bond Yield	12.0	Finance
+25	12005	Total Gross Central Government Debt as a Percentage of GDP	12.0	Finance
+26	13001	Gender Equality of Numeracy	13.0	Gender Equality
+27	13002	Gender Equality Years of Education	13.0	Gender Equality
+28	13003	Gender-equal Inheritance	13.0	Gender Equality
+29	13004	Historical Gender Equality Index	13.0	Gender Equality
+30	13005	Sex Ratio	13.0	Gender Equality
+31	13006	Share of Women in Parliament	13.0	Gender Equality
+32	14001	Cattle per Capita	14.0	Agriculture
+33	14002	Cropland per Capita	14.0	Agriculture
+34	14003	Goats per Capita	14.0	Agriculture
+35	14004	Pasture per Capita	14.0	Agriculture
+36	14005	Pigs per Capita	14.0	Agriculture
+37	14006	Sheep per Capita	14.0	Agriculture
+38	14007	Total Cattle	14.0	Agriculture
+39	14008	Total Cropland	14.0	Agriculture
+40	14009	Total Number of Goats	14.0	Agriculture
+41	14010	Total Number of Pigs	14.0	Agriculture
+42	14011	Total Number of Sheep	14.0	Agriculture
+43	14012	Total Pasture	14.0	Agriculture
+44	15001	Average Years of Education	15.0	Human Capital
+45	15002	Book Titles per Capita	15.0	Human Capital
+46	15003	Educational Inequality Gini Coefficient	15.0	Human Capital
+47	15004	Numeracy (Total)	15.0	Human Capital
+48	15005	Universities Founded	15.0	Human Capital
+49	15006	Male Literacy	15.0	Human Capital
+50	15007	Female Literacy	15.0	Human Capital
+51	15008	Total Literacy	15.0	Human Capital
+52	16001	Armed conflicts (Internal)	16.0	Institutions
+53	16002	Armed Conflicts (International)	16.0	Institutions
+54	16003	Competitiveness of Executive Recruitment (XRCOMP)	16.0	Institutions
+55	16004	Competitiveness of Participations (PARCOMP)	16.0	Institutions
+56	16005	Executive Constraints (XCONST)	16.0	Institutions
+57	16006	Homicide Rates	16.0	Institutions
+58	16007	Latent Democracy Variable	16.0	Institutions
+59	16008	Openness of Executive Recruitment (XROPEN)	16.0	Institutions
+60	16009	Political Competition	16.0	Institutions
+61	16010	Political Participation	16.0	Institutions
+62	16011	Polity2 Index	16.0	Institutions
+63	16012	Polyarchy	16.0	Institutions
+64	16013	Regulation of Chief Executive Recruitment (XRREG)	16.0	Institutions
+65	16014	Regulation of Participation (PARREG)	16.0	Institutions
+66	16015	Unifid Democracy Scores (UDS)	16.0	Institutions
+67	17001	Number of Days Lost in Labour Disputes	17.0	Labour Relations
+68	17002	Number of Labour Disputes	17.0	Labour Relations
+69	17003	Number of Workers Involved in Labour Disputes	17.0	Labour Relations
+70	18001	GDP per Capita	18.0	National Accounts
+71	19001	Income Inequality	19.0	Prices and Wages
+72	19002	Inflation	19.0	Prices and Wages
+73	19003	Labourers Real Wage	19.0	Prices and Wages
+74	20001	Biodiversity - naturalness	20.0	Environment
+75	20002	CO2 Emissions per Capita	20.0	Environment
+76	20003	SO2 Emissions per Capita	20.0	Environment
+77	20004	Total CO2 Emissions	20.0	Environment
+78	20005	Total SO2 Emissions	20.0	Environment
+79	21001	Aluminium Production	21.0	Production
+80	21002	Bauxite Production	21.0	Production
+81	21003	Copper Production	21.0	Production
+82	21004	Gold Production	21.0	Production
+83	21005	Iron Ore Production	21.0	Production
+84	21006	Lead Production	21.0	Production
+85	21007	Manganese Production	21.0	Production
+86	21008	Nickel Production	21.0	Production
+87	21009	Silver Production	21.0	Production
+88	21010	Tin Production	21.0	Production
+89	21011	Tungsten Production	21.0	Production
+90	21012	Zinc Production	21.0	Production

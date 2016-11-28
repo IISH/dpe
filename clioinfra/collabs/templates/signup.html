@@ -22,7 +22,7 @@
   </head>
 <div class="container">
 <h2 class="text-muted">Create new project page</h1>
-<form method="GET">
+<form action="/collabs/signup" method="POST">
         <div class="form-group">
     		<label for="emailField">Email</label>
 			<input name="email" type="email" class="input-small inline" id="emailField" placeholder="Enter email" value="{{ fields.email }}">
@@ -83,14 +83,9 @@
         <tbody>
             <tr>
                 <td>
-                <input type="checkbox" name="ind" {{ fields.ind }}> Datasets<br>
-                <input type="checkbox" name="datasets" {{ fields.topics }}> Topics<br>
-                <input type="checkbox" name="countries" {{ fields.countries }}> Countries
-                </td>
-                <td>
                 <input type="checkbox" name="searchdata" {{ fields.searchdata }}> Metadata Search<br>
                 <input type="checkbox" name="searchmetadata" {{ fields.searchmetadata }}> Browse Datasets <br>
-                <input type="checkbox" name="searchpapers" {{ fields.searchpapers }}> Full-text Dearch <br>
+                <input type="checkbox" name="searchpapers" {{ fields.searchpapers }}> Full-text Search <br>
 		<input type="checkbox" name="searchdataverses" {{ fields.searchdataverses }}> Search in IISH Dataverses <br>
                 </td>
                 <td>

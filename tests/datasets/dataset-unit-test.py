@@ -8,7 +8,7 @@ import json
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname("__file__"), '../../')))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname("__file__"), '../../modules')))
 from cliocore.configutils import Configuration
-from cliocore.datasets import Dataset
+from cliocore.datasetmanager import Dataset
 
 class ConfigTestClass(unittest.TestCase):
     def test_settings(self):
@@ -17,6 +17,10 @@ class ConfigTestClass(unittest.TestCase):
 	self.assertTrue(clioindex.to_html())
 	uids = '11007,11002'
 	self.assertTrue(self.clioinfra.findhandles(uids))
+	handles = ['hdl:10622/DONJXY', 'hdl:10622/EPD5LB', 'hdl:10622/UQV70P']
+	items = self.clioinfra.retrievedatasets(handles)
+	for x in items:
+	    print x
         self.assertTrue(self.clioinfra.config['dataverseroot'])
         self.assertTrue(self.clioinfra.config['apiroot'])
         self.assertTrue(self.clioinfra.config['key'])

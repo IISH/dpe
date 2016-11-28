@@ -37,7 +37,7 @@ import os
 import csv
 from StringIO import StringIO
 from cliocore.configutils import Configuration, Utils, DataFilter
-from cliocore.storage import Storage
+from cliocore.storagemanager import Storage
 
 # Dataset class definition and implementation
 class Dataset(Configuration):

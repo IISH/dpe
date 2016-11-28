@@ -40,6 +40,7 @@ class SearchAPITestClass(unittest.TestCase):
 	settings = Configuration()
 	dv = "National"
 	dv = "Micro"
+	dv = "RISTAT"
 	sconnection = ExtrasearchAPI(settings.config['dataverseroot'], dv)
 	p = sconnection.read_all_datasets()
 	self.assertTrue(bool(sconnection.read_all_datasets()))

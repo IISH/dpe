@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="/static/blocks.css" media="screen" type="text/css" />
+<div id="bodycontent">
+        <div id="main-wrap">
+        <form>
+        <input type="text" size="60" name="q" value="{{ searchq }}">
+	<input type="Submit" value="Search">
+	<br />
+	<div style="clear:both;width:100%;float:center;">
+	</div>
+	
+        </form>
+        </div>
+        <div id="main-wrap">
+	<br />
+        <h2>{{ pagetitle }}</h2>
+
+        {% for dataset in datasets %}
+                <h3>
+                <a href="{{ dataset.url }}">{{ dataset.name }}</a>
+                </h3>
+                <p>Author(s): {{ dataset.author }}</p>
+                <p>{{ dataset.description }}</p>
+        {% endfor %}
+        {% if not datasets %}
+        <p>No datasets found. Please try different keywords.</p>
+        {% endif %}
+        </div>
+</div>

@@ -71,7 +71,14 @@
 
 </div>
 
-
+{% if projectdata.newstitle %}
+        <div>
+                <a href="/collabs/settings?project=labourrelations&view=newseditor&action=edit&newsid={{ fields.newsid }}">{{ projectdata.newstitle }}</a>
+                <br>
+                {{ projectdata.newssummary }}
+                <br>Updated: 2016-03-18 13:11
+        </div>
+{% endif %}
 
 <div>
 <br />

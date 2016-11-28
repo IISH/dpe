@@ -47,8 +47,8 @@ class ConfigTestClass(unittest.TestCase):
 	self.projectpages = Project('projects')
 	allprojects = self.projectpages.get_all_projects()
 	self.assertTrue(bool(str(allprojects)))
-#	for item in allprojects:
-#    	    print item
+	for item in allprojects:
+    	    print item['uri']
 
 if __name__ == '__main__':
     unittest.main()

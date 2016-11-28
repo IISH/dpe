@@ -47,7 +47,8 @@ def topicscoder(config):
         return topicnames
 
 def buildgeocoder(geocoder, config, query):
-    geodict = []
+    geodict = {}
+    geonames = []
     geolist = {}
     oecd = {}
     geocoder = geocoder.convert_objects(convert_numeric=True)
@@ -83,13 +84,16 @@ def buildgeocoder(geocoder, config, query):
                 result = re.search(query, geoitem['name'], flags=re.IGNORECASE)
                 if result:
                     if geoitem['name']:
-                        geodict.append(geoitem)        
+                        geodict[geoitem['label']] = geoitem        
             else:
 	        if geoitem['id']:
-                    geodict.append(geoitem)
+		    geodict[geoitem['label']] = geoitem
         i = i + 1
+
+    for name in sorted(geodict.keys()):
+        geonames.append(geodict[name])
         
-    return (geodict, geolist, oecd)
+    return (geonames, geolist, oecd)
 
 # Geocoder vocabulary
 def load_geocodes(config, switch, codes, maindata, geolist):

@@ -44,6 +44,13 @@ class Geocoder(Configuration):
         self.geocoderhandle = self.config['geocoderhandle']
 	(self.classification, self.geodataset, self.title, self.units) = content2dataframe(self.config, self.geocoderhandle)
 
+    def historical(self):
+	return self.geonames
+
+    def modernboundaries(self):
+	self.modern.index = self.modern['ccode']
+	return self.modern
+
     def selectint(self, cols):
         (isint, notint) = ([], [])
         for colname in cols:
@@ -57,13 +64,25 @@ class Geocoder(Configuration):
                     notint.append(colname)
         return (isint, notint)
 
-    def buildgeocoder(self, query):
+    def buildgeocoder(self, filtersettings):
         self.geodict = {}
         self.geonames = []
         self.geolist = {}
         self.oecd = {}
         self.geocoder = self.geodataset.convert_objects(convert_numeric=True)
-        self.geocoder.index = self.geocoder[self.config['webmappercode']]
+	self.modern = self.geocoder
+   	self.modern = self.modern.loc[self.modern[self.config['webmapperoecd']] > 0]
+	if filtersettings.datafilter['classification'] == 'modern':
+	    self.geocoder = self.modern
+	    self.geocoder.index = self.geocoder[self.config['webmapperoecd']]
+	else:
+            self.geocoder.index = self.geocoder[self.config['webmappercode']]
+
+	# Apply filter
+        if filtersettings.minyear():
+            self.geocoder = self.geocoder.loc[self.geocoder['start year'] >= filtersettings.minyear()]
+        if filtersettings.maxyear():
+            self.geocoder = self.geocoder[self.geocoder['start year'] <= filtersettings.maxyear()]
         (self.cfilter, self.notint) = self.selectint(self.geocoder.index)
 
         i = 0
@@ -78,7 +97,11 @@ class Geocoder(Configuration):
                 geoitem['validfrom'] = int(countryitem['start year'])
                 geoitem['validuntil'] = int(countryitem['end year'])
                 years = '(' + str(int(countryitem['start year'])) + '-' + str(int(countryitem['end year'])) + ')'
-                geoitem['label'] = countryitem[self.config['webmappercountry']] + ' ' + str(years)
+		if filtersettings.datafilter['classification'] == 'modern':
+		    geoitem['label'] = str(countryitem[self.config['webmappercountry']])	
+		    geoitem['id'] = int(countryitem[self.config['webmapperoecd']])
+		else:
+                    geoitem['label'] = countryitem[self.config['webmappercountry']] + ' ' + str(years)
                 geoitem['year'] = str(countryitem[self.config['webmappercountry']]) + ' ' + years
                 geoitem['name'] = str(countryitem[self.config['webmappercountry']])
                 self.geolist[int(geoitem['id'])] = geoitem['label']
@@ -90,8 +113,9 @@ class Geocoder(Configuration):
                 ignore = cID
 
             if ignore == 0:
-                if query:
-                    result = re.search(query, geoitem['name'], flags=re.IGNORECASE)
+                if 'name' in filtersettings.datafilter:
+		    searchname = filtersettings.datafilter['name']
+                    result = re.search(r"^%s" % searchname, geoitem['name'], flags=re.IGNORECASE)
                     if result:
                         if geoitem['name']:
                             self.geodict[geoitem['label']] = geoitem

@@ -27,8 +27,10 @@ def dataframe_compiler(config, fullpath, handle, switch, datafilter):
     # Load Geocoder
     (classification, dataset, title, units) = content2dataframe(config, config['geocoderhandle'])
 
+    #print "Load geocodes"
     (geocoder, geolist, oecd2webmapper) = buildgeocoder(dataset, config, '')
     (modern, historical) = loadgeocoder(config, dataset, 'geocoder')
+    #print "Load data"
 
     coderyears = []
     # Default years selection
@@ -42,6 +44,7 @@ def dataframe_compiler(config, fullpath, handle, switch, datafilter):
 
     # Reading dataset
     (class1, dataset, title, units) = content2dataframe(config, handle)
+    print title
     filetitle = title
     filetitle = re.sub(' ', '_', filetitle)
     filetitle = re.sub(r'[\(\)]', '_', filetitle)
@@ -113,6 +116,7 @@ def dataframe_compiler(config, fullpath, handle, switch, datafilter):
     (countryinfo, notcountry) = selectint(maindata.index)
 
     (finalsubset, icoder, isyear, ctrfilter, nodata) = dataset_analyzer(datasubset, coder, yearscolumns)
+    #print "Final dataset"
     #return (finalsubset, fullpath, finalsubset)
     # Apply filter to countries
     if datafilter['ctrlist']:
@@ -124,5 +128,6 @@ def dataframe_compiler(config, fullpath, handle, switch, datafilter):
 	config['emptyvalues'] = 'no'
 	if config['emptyvalues'] == 'no':
 	    (coderyears, notyears) = selectint(finalsubset.columns)
+	    print finalsubset.columns
         datafile = create_excel_dataset(fullpath, icoder, metadata, icoder.columns, coderyears, finalsubset, isyear, ctrfilter)
     return (filetitle, fullpath, finalsubset)

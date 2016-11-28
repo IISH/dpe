@@ -1,4 +1,5 @@
 function showmap(datayear, mapyear, handle, varname, colors, catnum, ctrlist, logscale, histo, copyrights) {
+
     var rightdiv = document.getElementById("#showmap");
     var margin = {top: -120, right: 20, bottom: 40, left: 40};
     var margin = {top: -80, right: 0, bottom: 40, left: 0};

@@ -132,16 +132,20 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"en\/","ajaxPageSta
 </div>
   </div>
 </div></header>    
-      <section id="section-content" class="section section-content">
-  <div id="zone-preface-wrapper" class="zone-wrapper zone-preface-wrapper clearfix">  
-</div><div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix">  
-  <div id="zone-content" class="zone zone-content clearfix container-12">    
-	<div style="width:100%;">
-        {% block content %}{% endblock %}
-        </div>
-</div>
-</div></section>    
+
+      	<section id="section-content" class="section section-content">
+  	<div id="zone-preface-wrapper" class="zone-wrapper zone-preface-wrapper clearfix">  
+	</div>
+	<div id="zone-content-wrapper" class="zone-wrapper zone-content-wrapper clearfix">  
+  	<div id="zone-content" class="zone zone-content clearfix container-12">    
+		<div style="width:100%;">
+        	{% block content %}{% endblock %}
+        	</div>
+	</div>
+	</div>
+	</section>    
   
+	<div style="width:100%;clear:both;">
       <footer id="section-footer" class="section section-footer">
   <div id="zone-footer-wrapper" class="zone-wrapper zone-footer-wrapper clearfix">  
   <div id="zone-footer" class="zone zone-footer clearfix container-12">
@@ -183,16 +187,19 @@ jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"en\/","ajaxPageSta
       <p>The Reading Room is open<br />Mon: 10 am till 5 pm<br />Tue-Fri: 9 am till 5 pm</p><p><a href="/en/contact">ask@iisg.nl</a></p>    </div>
   </div>
 </section>  </div>
-</div><div class="grid-2 region region-footer-fourth" id="region-footer-fourth">
+</div>
+
+<div class="grid-2 region region-footer-fourth" id="region-footer-fourth">
   <div class="region-inner region-footer-fourth-inner">
     <section class="block block-block block-7 block-block-7 odd" id="block-block-7">
   <div class="block-inner clearfix">
-              <h2 class="block-title">address</h2>
-            
-    <div class="content clearfix">
-      <p>P.O. Box 2169<br />1000 CD Amsterdam</p><p>Cruquiusweg 31<br />1019 AT  Amsterdam<br />The Netherlands</p>    </div>
+	<h2 class="block-title">address</h2>
+    	<div class="content clearfix">
+      	<p>P.O. Box 2169<br />1000 CD Amsterdam</p><p>Cruquiusweg 31<br />1019 AT  Amsterdam<br />The Netherlands</p>    
+	</div>
+  	</div>
+    </section>  
   </div>
-</section>  </div>
 </div>  </div>
-</div></footer>  </div>  </body>
+</div></footer></div>  </div>  </body>
 </html>

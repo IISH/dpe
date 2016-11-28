@@ -179,9 +179,46 @@ def load_api_data1(apiurl, code, year, custom, scales, catnum):
         dataframe = simplejson.load(f)
     return dataframe
 
+
 app = Flask(__name__)
 clioinfra = Configuration()
 app.secret_key = clioinfra.config['secretkey']
+
+# FL-25-Nov-2016
+app.debug = True
+print( app.config )
+print("collabs.py, app.debug:", app.debug)
+print("collabs.py, g:", g)
+print("collabs.py, sys.path:", sys.path)
+
+
+@app.route('/')
+def start(settings=''):
+    if app.debug: print("start()")
+    activepage = 'Home'
+    config = configuration()
+    if config['error']:
+        return config['error']
+
+    if app.debug: print("start 1")
+    path = config['path']
+    pages = getindex(activepage)
+    perlbin = "/usr/bin/perl "
+    project = "frontpage"
+    base = ''
+    varproject = request.args.get('project')
+    varbase = request.args.get('base')
+    if varproject:
+	project = varproject
+    if varbase:
+	base = varbase
+    cmd = perlbin + path + "/../../bin/collab2api.pl " + project + " '' " + " " + base
+    p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+    maincontent = p.communicate()[0]
+
+    resp = make_response(render_template('clioinfra.html', maincontent=maincontent))
+    return resp
+
 
 @app.route('/graphslider')
 def graphslider():
@@ -747,30 +784,6 @@ def datasetspace(settings=''):
     resp = make_response(render_template('search.html', projectname=projectname, username=username, datasets=datasets, searchq=query, pagetitle=pagetitle, where=where, fields=fields))
     return resp
 
-@app.route('/')
-def start(settings=''):
-    activepage = 'Home'
-    config = configuration()
-    if config['error']:
-        return config['error']
-
-    path = config['path']
-    pages = getindex(activepage)
-    perlbin = "/usr/bin/perl "
-    project = "frontpage"
-    base = ''
-    varproject = request.args.get('project')
-    varbase = request.args.get('base')
-    if varproject:
-	project = varproject
-    if varbase:
-	base = varbase
-    cmd = perlbin + path + "/../../bin/collab2api.pl " + project + " '' " + " " + base
-    p = Popen(cmd, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
-    maincontent = p.communicate()[0]
-
-    resp = make_response(render_template('clioinfra.html', maincontent=maincontent))
-    return resp
 
 @app.route('/benford')
 def benford(cmddataset='', cmdyear='', settings=''):

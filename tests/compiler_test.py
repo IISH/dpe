@@ -11,13 +11,14 @@ from config import configuration, dataverse2indicators, load_dataverse, findpid,
 from datacompiler import dataframe_compiler
 
 config = configuration()
-config['remote'] = 'on'
+#config['remote'] = 'on'
 datafilter = {}
 datafilter['startyear'] = '1500'
 datafilter['endyear'] = '2010'
 datafilter['ctrlist'] = ''
 #datafilter['ctrlist'] = '528,14,18,67'
 handle = 'hdl:10622/SO62N5'
+handle = 'hdl:10622/Q9G8MG'
 switch = 'historical'
 fullpath = '/home/dpe/tmp'
 
