@@ -1420,5 +1420,27 @@ def advanced(settings=''):
 
     return resp
 
+
+# FL-29-Nov-2016 From NLGIS2 package demo.py
+Provinces = ["Groningen","Friesland","Drenthe","Overijssel","Flevoland","Gelderland","Utrecht","Noord-Holland","Zuid-Holland","Zeeland","Noord-Brabant","Limburg"]
+pagelist = ["Home", "Index", "Map", "Sources", "User Guide", "About"]
+urls = ["/", "index", "/site?year=1982&code=TEGM", "/sources", "/developers", "/about"]
+pipes = '[\|;><\%`&()$]'
+
+def getindex(thispage):
+    fulllist = []
+    for i, page in enumerate(pagelist):
+        pages = {}
+        pages['name'] = page
+        pages['url'] = urls[i]
+        if page == thispage:
+            pages['active'] = " class=current"
+        else:
+            pages['active'] = ''
+        fulllist.append(pages)
+
+    return fulllist
+
+
 if __name__ == '__main__':
     app.run()
